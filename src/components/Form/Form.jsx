@@ -55,7 +55,7 @@ export default function Form( {currentId, setCurrentId}) {
   }
 
   //user signout, redux state changes, rerender form component
-  if(!auth.authData){
+  if(!auth.authData && !user?.result){
     return (
       <Paper className={classes.paper}>
         <Typography variant='h6' align='center'>
