@@ -1,5 +1,5 @@
 import React from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch,useSelector} from 'react-redux'
 import {Card, CardActions, CardContent, CardMedia, Button, Typography} from '@material-ui/core'
 import moment from 'moment'
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt'
@@ -14,6 +14,7 @@ export default function Post({post, setCurrentId}) {
   const dispatch = useDispatch()
   const classes = useStyles()
   const user = JSON.parse(localStorage.getItem('profile'))
+  const auth = useSelector(state=>state.auth)
 
   const Likes = () => {
     if (post.likes.length > 0) {
@@ -36,7 +37,7 @@ export default function Post({post, setCurrentId}) {
         <Typography variant='body2'>{moment(post.createdAt).fromNow()}</Typography>
       </div>
       <div className={classes.overlay2}>
-      {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&
+      {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && auth.authData &&
         (<Button style={{color:'white'}} size='small' onClick={()=>setCurrentId(post._id)}>
         <MoreHorizIcon />
         </Button>)}
@@ -52,7 +53,7 @@ export default function Post({post, setCurrentId}) {
         <Button size='small' color='primary' onClick={()=>dispatch(likePost(post._id))}>
         <Likes/>
         </Button>
-        {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) &&  (<Button size='small' color='primary' onClick={()=>dispatch(deletePost(post._id))}>
+        {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && auth.authData &&  (<Button size='small' color='primary' onClick={()=>dispatch(deletePost(post._id))}>
           <DeleteIcon fontSize='small'/>
             Delete
         </Button>)}
