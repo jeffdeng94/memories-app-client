@@ -1,3 +1,3 @@
-## Memories App-client
+## Memories App-client - graphQL
 
-<https://jeffdeng-memories-app.netlify.app/>
+### This is the dev version migrated from the RESTful API to graphQL and Apollo Client.

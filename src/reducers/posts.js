@@ -1,8 +1,11 @@
 import { DELETE, CREATE, UPDATE, FETCH_ALL } from '../constants/actionTypes'
 export default function posts(posts = [], action) {
   switch (action.type) {
-    case FETCH_ALL:
+    case FETCH_ALL: {
+      console.log(action.payload)
       return action.payload
+    }
+
     case CREATE:
       return [...posts, action.payload]
     case UPDATE:

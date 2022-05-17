@@ -8,16 +8,22 @@ import reducers from './reducers/index'
 import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { StyledEngineProvider } from '@mui/material'
 
+import { ApolloProvider } from '@apollo/client'
+import { client } from './apolloClient'
 import './index.css'
+
 const store = createStore(reducers, compose(applyMiddleware(thunk)))
 const theme = createTheme({})
+
 ReactDOM.render(
-  <Provider store={store}>
+  <ApolloProvider client={client}>
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={theme}>
-        <App />
+        <Provider store={store}>
+          <App />
+        </Provider>
       </ThemeProvider>
     </StyledEngineProvider>
-  </Provider>,
+  </ApolloProvider>,
   document.getElementById('root'),
 )
