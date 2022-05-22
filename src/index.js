@@ -9,8 +9,8 @@ import { createTheme, ThemeProvider } from '@material-ui/core/styles'
 import { StyledEngineProvider } from '@mui/material'
 
 import './index.css'
-const store = createStore(reducers, compose(applyMiddleware(thunk)))
-const theme = createTheme({})
+export const store = createStore(reducers, compose(applyMiddleware(thunk)))
+export const theme = createTheme({})
 ReactDOM.render(
   <Provider store={store}>
     <StyledEngineProvider injectFirst>
@@ -19,5 +19,5 @@ ReactDOM.render(
       </ThemeProvider>
     </StyledEngineProvider>
   </Provider>,
-  document.getElementById('root'),
+  document.getElementById('root') || document.createElement('div'),
 )
