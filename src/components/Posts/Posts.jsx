@@ -9,8 +9,9 @@ export default function Posts({ setCurrentId }) {
   const classes = useStyles()
 
   return !posts.length ? (
-    <div>Loading</div>
+    <CircularProgress />
   ) : (
+    // <div>Loading</div>
     <Grid
       className={classes.container}
       container
